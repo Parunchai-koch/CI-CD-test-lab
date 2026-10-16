@@ -1,12 +1,12 @@
-name: Github Action Lab #workflow name
-
+name: Build Docker Image
 on:
-  workflow_dispatch: # lets us start workflow manually from the Actions tab in the repo
+  workflow_dispatch:
 
 jobs:
-  hello: #job name
-    runs-on: ubuntu-latest #temp machine to run the job on
-
-    steps: #tell order of cmd
-      - name: Print a message #job step name
-        run: echo "Hello from github actions!" #actual command to run
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download project code
+        uses: actions/checkout@v4 #download the project code from the repository
+      - name: Build image
+        run: docker build -t task-app:latest .
