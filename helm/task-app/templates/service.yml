@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: task-app
 spec:
-  type: ClusterIP
+  type: {{ .Values.service.type }}
   selector:
     app: task-app
   ports:
-    - port: 80
+    - port: {{ .Values.service.port }}
       targetPort: 8080

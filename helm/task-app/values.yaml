@@ -1,13 +1,9 @@
 replicaCount: 1
 
+service:
+  type: LoadBalancer
+  port: 80
+
 image:
   repository: parunchai/task-app
-<<<<<<< HEAD
   tag: "c8a89d1afc729e6c934c8a99937953f683dc913b"
-=======
-  tag: 505eb53e02b94e1227b9a3378b38ea2f295ced3e
-
-server:
-  service:
-    type: LoadBalancer
->>>>>>> 28701e6 (fix: add values to override service type argoCD server will use)
