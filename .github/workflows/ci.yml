@@ -9,7 +9,7 @@ jobs:
       - name: Download project code
         uses: actions/checkout@v4 #download the project code from the repository
       - name: Login to DockerHub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
