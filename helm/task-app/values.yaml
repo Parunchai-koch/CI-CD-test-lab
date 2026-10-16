@@ -1,0 +1,5 @@
+replicaCount: 1
+
+image:
+  repository: parunchai/task-app
+  tag: 505eb53e02b94e1227b9a3378b38ea2f295ced3e
