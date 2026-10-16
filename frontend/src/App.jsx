@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
-const titleValidationMessage = "Enter a task title between 1 and 200 characters.";
+const titleValidationMessage =
+  "Enter a task title between 1 and 200 characters.";
 
 async function request(url, options) {
   const response = await fetch(url, options);
@@ -85,7 +86,9 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ completed: !task.completed }),
       });
-      setTasks((current) => current.map((item) => (item.id === task.id ? updatedTask : item)));
+      setTasks((current) =>
+        current.map((item) => (item.id === task.id ? updatedTask : item)),
+      );
     } catch (error) {
       setActionError(error.message);
     } finally {
@@ -111,8 +114,10 @@ export default function App() {
       <section className="task-card" aria-labelledby="page-title">
         <header>
           <p className="eyebrow">Demo workspace</p>
-          <h1 id="page-title">Shared task list</h1>
-          <p className="notice">Tasks are shared by everyone and reset whenever the server restarts.</p>
+          <h1 id="page-title">Shared Em's task list</h1>
+          <p className="notice">
+            Tasks are shared by everyone and reset whenever the server restarts.
+          </p>
         </header>
 
         <form className="task-form" onSubmit={addTask} noValidate>
@@ -131,7 +136,11 @@ export default function App() {
               {creating ? "Adding…" : "Add task"}
             </button>
           </div>
-          {formError && <p id="form-error" className="message error" role="alert">{formError}</p>}
+          {formError && (
+            <p id="form-error" className="message error" role="alert">
+              {formError}
+            </p>
+          )}
         </form>
 
         <div className="status-region" aria-live="polite" aria-atomic="true">
@@ -139,19 +148,31 @@ export default function App() {
           {loadError && (
             <div className="message error" role="alert">
               <p>Could not load tasks: {loadError}</p>
-              <button type="button" onClick={loadTasks}>Retry</button>
+              <button type="button" onClick={loadTasks}>
+                Retry
+              </button>
             </div>
           )}
-          {actionError && <p className="message error" role="alert">{actionError}</p>}
+          {actionError && (
+            <p className="message error" role="alert">
+              {actionError}
+            </p>
+          )}
         </div>
 
-        {!loading && !loadError && (
-          tasks.length === 0 ? <p className="empty">No tasks yet. Add one above.</p> : (
+        {!loading &&
+          !loadError &&
+          (tasks.length === 0 ? (
+            <p className="empty">No tasks yet. Add one above.</p>
+          ) : (
             <ul className="task-list" aria-label="Tasks">
               {tasks.map((task) => {
                 const pending = pendingTaskIds.has(task.id);
                 return (
-                  <li key={task.id} className={task.completed ? "task complete" : "task"}>
+                  <li
+                    key={task.id}
+                    className={task.completed ? "task complete" : "task"}
+                  >
                     <label>
                       <input
                         type="checkbox"
@@ -161,15 +182,19 @@ export default function App() {
                       />
                       <span>{task.title}</span>
                     </label>
-                    <button type="button" className="delete" disabled={pending} onClick={() => deleteTask(task)}>
+                    <button
+                      type="button"
+                      className="delete"
+                      disabled={pending}
+                      onClick={() => deleteTask(task)}
+                    >
                       {pending ? "Working…" : "Delete"}
                     </button>
                   </li>
                 );
               })}
             </ul>
-          )
-        )}
+          ))}
       </section>
     </main>
   );
